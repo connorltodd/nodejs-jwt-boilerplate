@@ -9,6 +9,12 @@ const config = {
   database: process.env.DB_NAME,
 };
 
-const connection = mysql.createPool(config);
+const connection = mysql.createConnection(config);
+
+connection.connect((error) => {
+  error
+    ? console.log(error)
+    : console.log(`Connected to database at port: ${connection.threadId}`);
+});
 
 module.exports = connection;
